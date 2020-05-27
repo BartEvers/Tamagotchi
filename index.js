@@ -1,11 +1,3 @@
-// tamagotchi.js
-class Tamagotchi {
-  constructor(name) {
-    this.name = name;
-    this.gender = "m";
-    this.family = "Zork";
-    this.birthDate = new Date();
-
     this.hunger = 0;
     this.happiness = 0;
     this.discipline = 0;
@@ -48,6 +40,7 @@ class Tamagotchi {
       case "snack":
         this.hunger = this.hunger - 1;
         this.happiness = this.happiness + 3;
+        this.discipline = this.discipline - 1;
 
         const randomNumber = Math.random();
 
@@ -82,8 +75,29 @@ class Tamagotchi {
       this.currentLifeCycle = this.currentLifeCycle + 1;
     }
   }
+  scold() {
+    console.log(`${this.name}, don't do that!`);
+    this.happiness = this.happiness - 1;
+    this.discipline = this.discipline + 2;
+  }
 
+  play(userPick) {
+    const randomNumber = Math.random();
+    let tamagotchiPick;
+    if (randomNumber > 0.5) {
+      tamagotchiPick = "left";
+    } else {
+      tamagotchiPick = "right";
+    }
 
+    if (tamagotchiPick === userPick) {
+      console.log("We think so much alike!");
+      this.happiness = this.happiness + 2;
+    } else {
+      console.log("Oh no, we don't understand our pet");
+      this.happiness = this.happiness - 1;
+    }
+  }
 }
 
 const pet = new Tamagotchi("Stinky");
@@ -109,5 +123,13 @@ console.log(`Our pet is a ${pet.getLifeCycle()}`);
 pet.grow();
 console.log(`Our pet is a ${pet.getLifeCycle()}`);
 // Nothing changed (good)
+console.log(`How discplined is our pet? ${pet.discipline}`);
+pet.scold();
+pet.scold();
+console.log(`How discplined is our pet after scolding? ${pet.discipline}`);
+console.log(`How happy is our pet before playing? ${pet.happiness}`);
+pet.play("right");
+pet.play("left");
+console.log(`How happy is our pet after playing? ${pet.happiness}`);
 
 console.log(pet);
