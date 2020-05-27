@@ -25,9 +25,18 @@ class Tamagotchi {
     this.isHatched = true;
   }
 
+  poop() {
+    console.log("Uh oh, someone needs to go do a number 2");
+    this.numberOfPoops = this.numberOfPoops + 1;
+    this.hunger = this.hunger + 1;
+  }
+
+
 }
 
 const pet = new Tamagotchi("Stinky");
 console.log(pet);
 pet.hatch();
+pet.poop();
+console.log("How many poops so far?", pet.numberOfPoops, "poop");
 console.log(pet);
