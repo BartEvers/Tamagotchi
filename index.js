@@ -31,6 +31,21 @@ class Tamagotchi {
     this.hunger = this.hunger + 1;
   }
 
+  toilet() {
+    console.log("Flush!");
+    this.numberOfPoops = 0;
+
+    const randomNumber = Math.random();
+    if (randomNumber > 0.8 && !this.isPottyTrained) {
+      console.log("Our Tamagotchi bacame Potty Trained!");
+      console.log("They grow up so fast");
+      this.isPottyTrained = true;
+    }
+  }
+
+
+
+
 
 }
 
@@ -38,5 +53,6 @@ const pet = new Tamagotchi("Stinky");
 console.log(pet);
 pet.hatch();
 pet.poop();
+pet.toilet();
 console.log("How many poops so far?", pet.numberOfPoops, "poop");
 console.log(pet);
